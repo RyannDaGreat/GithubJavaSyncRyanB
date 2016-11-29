@@ -1,0 +1,164 @@
+⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤ CONCLUSION::::: finally can be used to make post-increments, something I've wanted to be able to make for a while! It is worth looking into!!
+//Would be used as a try{return x;}finally{print(message);}
+
+
+VARIABLES: a,b,c,d,e,A,B,C,D,E.
+    Capital letters represent literal chunks of code (including multiple statements or for loops etc),
+    while lower case letters represent class or variable names. Note: ⵁ denotes a variable name that is not referenced anywhere except its instantiation.
+
+
+⛤GOAL: Trying to rewrite the 'finally' block using only other statements/keywords, in the same way that you can write a for loop using only a while loop.
+⛤ NOTE: a，c ∈ Exception    ﹙This is inferable from their contexts﹚
+⛤ We can't re-throw an exception because we don't know the specific type of class that exception is.
+
+
+
+CONCLUSION: I don't believe it is possible to represent the finally block in java with other keywords because Java is statically typed and you can't simply catch Exception, because that would be too broad. (Open question: Is is possible to do in python?)
+
+
+
+
+boolean run_Z=true;
+try
+{
+    A;
+}
+...
+catch(a b)
+{
+    B;
+    Z;
+}
+...
+//Must leave room for the possibility that the exception isn't caught, or else it won't throw the right type of error class. ∴ Having "catch(Exception ⵁ)" in the end won't work as an equivalent to 'finally', because 'Exception' is too broad and the compiler won't realize stuff.
+if(run_Z)
+    Z;
+
+
+================================================================================================================
+
+try
+{
+    A;
+}
+...
+catch(a b)
+{
+    //A threw exception a. ∴ Z in the catch(ⵁ) block will not execute.
+    //If B throws uncaught error then Z_postCatches won't execute,
+    B;
+}
+...
+catch(Exception ⵁ)
+{
+    Z;
+}
+label: Z_postCatches
+Z;
+
+
+
+
+≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣
+
+try
+{
+    A;
+}
+...
+catch(a b)
+{
+    B;
+}
+...
+finally
+{
+    Z;
+}
+
+================================================================================================
+
+
+P̲Y̲T̲H̲O̲N̲:
+
+try:
+    A
+finally:
+    Z
+
+
+≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣
+
+
+try:
+    A
+except:
+    Z
+    raise
+Z
+
+
+
+
+~~~~~~~~~~  and, more broadly  ~~~~~~~~~~
+
+#Combos: 1. A throws and B doesn't ⨁ 2. A throws and B throws ⨁ 3. A doesn't throw.
+try:
+    A
+except:
+    B
+finally:
+    Z
+
+
+≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣
+
+try:
+    A
+except:
+    B
+    Z
+    raise
+Z
+
+⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤⛤ CONCLUSION::::: finally can be used to make post-increments, something I've wanted to be able to make for a while! It is worth looking into!!
+
+
+
+
+
+
+
+
+try:
+    A
+...
+except b:
+    B
+except c:
+    C
+except d:
+    D
+...
+finally:
+    Z
+
+
+
+≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣≣
+
+
+try:
+    A
+...
+except b:
+    B
+    raise
+except c:
+    C
+    raise
+except d:
+    D
+    raise
+...
+B
