@@ -11,5 +11,13 @@ public class TestClass
         {
             System.out.println(out.substring(i));
         }
+        try
+        {
+            HUHUHUrAutoUpdaterRefactorated.main("".split("."));
+        }
+        catch(InterruptedException e)
+        {
+            e.printStackTrace();
+        }
     }
 }
